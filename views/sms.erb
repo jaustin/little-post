@@ -1,0 +1,20 @@
+<html>
+  <%= erb :stationery_styles %>
+  <body>
+    <div class="container">
+      <div class="smsmessage">
+        <%= @body.to_s.gsub(/\n/, "<br/>") %>
+      </div>
+      <div class="phone">
+        <div class="headersms">
+          <div class="header-intro">
+            An SMS from
+          </div>
+          <div class="header-from">
+            <%= @sender %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

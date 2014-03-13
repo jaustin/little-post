@@ -17,8 +17,17 @@ end
 
 # This handles the incoming mail
 post '/letterbox' do
+  @style   = "email"
   @body    = params[:"body-plain"]
   @subject = params[:subject]
+  @sender  = params[:from]
+  send_message
+end
+
+post '/smsbox' do
+  @style   = "sms"
+  @body    = params[:"body"]
+  @subject = "SMS Message"
   @sender  = params[:from]
   send_message
 end
@@ -28,18 +37,31 @@ not_found do
 end
 
 # Set some variables for use in test routes
-before '/test/*' do
+before '/mailtest/*' do
+  @style   = "email"
   @subject = "Dinner"
   @body    = "Hello!\n\nThanks for dinner last night. We had a great time! See you soon."
   @sender  = "Barry"
 end
 
-# Show a test message in the browser
-get '/test/show-junkmail/?' do
-  erb :stationery, :layout => nil
+before '/smstest/*' do
+  @style   = "sms"
+  @subject = "SMS Message"
+  @body    = "Hello! Thanks for dinner last night. We had a great time! See you soon."
+  @sender  = "Jonathan Austin"
 end
 
-# Print a test message
-get '/test/print-junkmail/?' do
+# Show a test message in the browser
+get '*/show-junkmail/?' do
+  case @style
+  when "sms"
+      erb :sms, :layout => nil
+  when "email"
+      erb :stationery, :layout => nil
+  end
+end
+
+# Print a test SMS
+get '*/print-junkmail/?' do
   send_message
 end

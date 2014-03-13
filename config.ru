@@ -21,7 +21,12 @@ helpers do
 
   def send_message
     direct_print_url = URI.parse("http://remote.bergcloud.com/playground/direct_print/#{ENV['LP_DIRECT_PRINT_CODE']}")
-    message  = erb :stationery, :layout => nil
+    case @style
+    when "sms"
+      message  = erb :sms, :layout => nil
+    when "email"
+      message  = erb :stationery, :layout => nil
+    end
     response = Net::HTTP.post_form(direct_print_url, {"html" => message })
     p response.code
   end
