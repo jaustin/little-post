@@ -13,7 +13,7 @@
     padding: 20px 20px 3px 20px;
     font-size: 22px;
     margin-bottom: -50px;
-    border-image: url(../images/smsbubble.png) 10 10 90 10 stretch;
+    border-image: url(<%= File.join(APP_ROOT, 'images', 'smsbubble.png') %>) 10 10 90 10 stretch;
   }
   .message {
     width: 322px;
@@ -52,7 +52,7 @@
     position: relative;
     padding: 80px 0 100px 0;
     width: 380px;
-    background-image: url("../images/phone.png");
+    background-image: url(<%= File.join(APP_ROOT, 'images', 'phone.png') %>);
     background-repeat: no-repeat;
     background-origin: border-box;
     margin-left: 20px;

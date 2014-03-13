@@ -1,3 +1,5 @@
+APP_ROOT = ENV['URL']
+
 # Check all the required environment variables are set
 before do
   required_env_vars = [ENV['LP_DIRECT_PRINT_CODE'], ENV['DASHBOARD_USERNAME'], ENV['DASHBOARD_PASSWORD']]
