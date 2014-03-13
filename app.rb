@@ -19,7 +19,7 @@ end
 # This handles the incoming mail
 post '/letterbox' do
   @style   = "email"
-  @body    = params[:"body-plain"]
+  @body    = params[:"stripped-html"]
   @subject = params[:subject]
   @sender  = params[:from]
   send_message
