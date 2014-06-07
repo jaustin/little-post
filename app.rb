@@ -27,9 +27,9 @@ end
 
 post '/smsbox' do
   @style   = "sms"
-  @body    = params[:"body"]
+  @body    = params[:"messageText"]
   @subject = "SMS Message"
-  @sender  = params[:from]
+  @sender  = params[:firstName] + " " + params[:lastName]
   send_message
 end
 
